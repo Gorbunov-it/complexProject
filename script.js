@@ -17,5 +17,5 @@ let degree = multiplication ** 3;
 console.log(degree);
 
 // 4) Вывести в консоль первые 2 цифры полученного числа
-let strDegree = String(num).slice(0, 2);
+let strDegree = String(degree).slice(0, 2);
 console.log(Number(strDegree));
