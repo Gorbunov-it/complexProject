@@ -1,14 +1,14 @@
 // 1) Создать переменную num со значением 266219 (тип данных число)
-let num = "266219";
+let num = 266219;
 
 // 2) Вывести в консоль произведение (умножение) цифр этого числа
 // Например: число 123, при помощи javaScript получить каждую цифру ( 1, 2, 3 ) и перемножить их. Правильно использовать цикл или методы перебора.
-
+let arrayNum = [...num.toString()].map(Number);
+console.log(arrayNum.length);
 //результат умножения
 let multiplication = 1;
-let massNum = num.split("");
-for (let i = 0; i <= massNum.length - 1; i++) {
-  multiplication *= Number(massNum[i]);
+for (let i = 0; i <= arrayNum.length - 1; i++) {
+  multiplication *= Number(arrayNum[i]);
 }
 console.log(multiplication);
 
