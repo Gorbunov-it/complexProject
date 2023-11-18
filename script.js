@@ -1,15 +1,34 @@
 "use strict";
 
-// _str = 123;
-const _str = " Cоздайте функцию, которая принимает 1 аргумент (название произвольное) ";
-
-// 1) Создайте функцию, которая принимает 1 аргумент (название произвольное)
-const fun = function (variable) {
-  if (typeof variable === "string") {
-    return variable.trim().length > 30 ? variable.slice(0, 30) + "..." : variable;
-  } else {
-    return "в качестве аргумента передана не строка";
+// 1) Создать массив arr = []
+// — Записать в него 7 любых многозначных чисел в виде строк
+// — Вывести в консоль только те, что начинаются с цифры 2 или 4 (Должны присутствовать в массиве)
+let arr = ["32", "27", "788", "401", "74", "95", "122"]; // в виде строк
+arr.forEach(function (item) {
+  if (item.startsWith("2") || item.startsWith("4")) {
+    console.log(item);
   }
-};
+});
 
-console.log(fun(_str));
+// 2) Вывести в столбик все простые числа от 1 до 100 (сделать при помощи цикла)
+// — Статья про простые числа - КЛИК
+// — Рядом с каждым числом написать оба делителя данного числа
+//     Например: “Делители этого числа: 1 и n”
+function isPrime(num) {
+  for (let i = 2; i < num; i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function printPrimes(max) {
+  for (let i = 2; i <= max; i++) {
+    if (isPrime(i)) {
+      console.log(`Делители ${i}: 1 и ${i}`);
+    }
+  }
+}
+
+printPrimes(100);
