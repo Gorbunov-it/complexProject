@@ -1,34 +1,23 @@
 "use strict";
 
-// 1) Создать массив arr = []
-// — Записать в него 7 любых многозначных чисел в виде строк
-// — Вывести в консоль только те, что начинаются с цифры 2 или 4 (Должны присутствовать в массиве)
-let arr = ["32", "27", "788", "401", "74", "95", "122"]; // в виде строк
-arr.forEach(function (item) {
-  if (item.startsWith("2") || item.startsWith("4")) {
-    console.log(item);
-  }
-});
+const block = document.getElementById("block");
+const week = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+const date = new Date();
+const currentDay = date.getDay();
 
-// 2) Вывести в столбик все простые числа от 1 до 100 (сделать при помощи цикла)
-// — Статья про простые числа - КЛИК
-// — Рядом с каждым числом написать оба делителя данного числа
-//     Например: “Делители этого числа: 1 и n”
-function isPrime(num) {
-  for (let i = 2; i < num; i++) {
-    if (num % i === 0) {
-      return false;
+const showWeek = function () {
+  let day = "";
+  for (let i = 0; i < week.length; i++) {
+    if (week[i] === "Воскресенье" || week[i] === "Суббота") {
+      day = `<i>${week[i]}</i>` + "<br>";
+    } else {
+      day = week[i] + "<br>";
     }
-  }
-  return true;
-}
-
-function printPrimes(max) {
-  for (let i = 2; i <= max; i++) {
-    if (isPrime(i)) {
-      console.log(`Делители ${i}: 1 и ${i}`);
+    if (week[i] === week[currentDay]) {
+      day = `<b>${day}</b>`;
     }
+    block.innerHTML += day;
   }
-}
+};
 
-printPrimes(100);
+showWeek();
