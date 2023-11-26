@@ -1,23 +1,44 @@
 "use strict";
 
+// Вывести на экран все дни недели
+// Каждый из них с новой строчки
+// Выходные дни - курсивом
+// Текущий день - жирным шрифтом(использовать объект даты)
+
 const block = document.getElementById("block");
 const week = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
-const date = new Date();
-const currentDay = date.getDay();
+let toDay = "";
 
-const showWeek = function () {
-  let day = "";
-  for (let i = 0; i < week.length; i++) {
-    if (week[i] === "Воскресенье" || week[i] === "Суббота") {
-      day = `<i>${week[i]}</i>` + "<br>";
+const getCurrentDay = function () {
+  const day = new Date().toLocaleString();
+  const myDate = new Date(day.replace(/(\d+).(\d+).(\d+)/, "$3/$2/$1"));
+  toDay = week[myDate.getDay()];
+};
+
+const Weekday = function () {
+  week.push(week[0]);
+  week.shift();
+  showWeek(week);
+};
+
+const showWeek = function (array) {
+  array.forEach((item) => {
+    let day = "";
+    if (item === "Суббота" || item === "Воскресенье") {
+      day = `<i>${item}</i>` + "<br>";
     } else {
-      day = week[i] + "<br>";
+      day = item + "<br>";
     }
-    if (week[i] === week[currentDay]) {
+    if (item === toDay) {
       day = `<b>${day}</b>`;
     }
     block.innerHTML += day;
-  }
+  });
 };
 
-showWeek();
+const Start = function () {
+  getCurrentDay();
+  Weekday();
+};
+
+Start();
