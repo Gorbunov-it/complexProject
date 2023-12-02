@@ -1,104 +1,74 @@
 "use strict";
-// 2) Для вывода в формате (а) напишите функцию, которая будет менять склонение слов в зависимости от числа, "час, часов, часа"
-// 3) Для вывода в формате(б) напишите функцию, которая будет добавлять 0 перед значениями
-// которые состоят из одной цифры(из 9: 5: 3 1.6.2019 сделает 09:05:03 01.06.2019)
+
+const blockFirstDate = document.querySelector("#blockFirstDate");
+const blockSecondDate = document.querySelector("#blockSecondDate");
 
 //  a) 'Сегодня Вторник, 4 февраля 2020 года, 21 час 5 минут 33 секунды'
-const fullDate = () => {
-  let blockForFullDate = document.getElementById("blockForFullDate");
-  const week = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
-  const month = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
+const getFirstDate = () => {
+  const date = new Date();
 
-  const getWeekDay = (date) => {
-    const day = date.toLocaleString();
-    const myDate = new Date(day.replace(/(\d+).(\d+).(\d+)/, "$3/$2/$1"));
-    return week[myDate.getDay(date)];
+  String.prototype.firstLetterToUppercase = function () {
+    return this[0].toUpperCase() + this.slice(1);
   };
 
-  const getDay = (date) => {
-    return date.getDate();
+  const getLocalDate = () => {
+    const localDate = date.toLocaleString("ru-RU", { dateStyle: "full" });
+    const letterDate = localDate.replace("г.", "года,");
+    return "а) Сегодня " + letterDate.firstLetterToUppercase();
   };
 
-  const getMonth = (date) => {
-    return month[date.getMonth(date)];
+  // [час, часа, часов]
+  // [минута, минуты, минут]
+  // ["секунда", "секунды", "секунд"]
+  const getFormats = (varieble, format) => {
+    varieble = Math.abs(varieble) % 10;
+    if (varieble > 1 && varieble < 5) {
+      return format[1];
+    }
+    if (varieble == 1) {
+      return format[0];
+    } else {
+      return format[2];
+    }
   };
 
-  const getYear = (date) => {
-    return date.getFullYear();
+  const getTimeDate = () => {
+    let timeDate = date.toLocaleString("ru-RU", {
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+    });
+    return timeDate;
   };
 
-  const getHour = (date) => {
-    return date.getHours();
+  const getformatDate = () => {
+    let formatDate = getTimeDate().split(":");
+    const getFormatHours = formatDate[0] + " " + getFormats(formatDate[0], ["час", "часа", "часов"]);
+    const getFormatMinuts = formatDate[1] + " " + getFormats(formatDate[1], ["минута", "минуты", "минут"]);
+    const getFormatSeconds = formatDate[2] + " " + getFormats(formatDate[2], ["секунда", "секунды", "секунд"]);
+    formatDate = getFormatHours + " " + getFormatMinuts + " " + getFormatSeconds;
+    return formatDate;
   };
 
-  const getMinutes = (date) => {
-    return date.getMinutes();
+  const startFirstDate = () => {
+    const locatDate = getLocalDate();
+    const formatDate = getformatDate();
+    blockFirstDate.innerHTML = locatDate + " " + formatDate;
   };
 
-  const getSeconds = (date) => {
-    return date.getSeconds();
-  };
-
-  const outputDate = () => {
-    const date = new Date();
-    let weekDay = getWeekDay(date);
-    let day = getDay(date);
-    let month = getMonth(date);
-    let year = getYear(date);
-    let hour = getHour(date);
-    let minutes = getMinutes(date);
-    let seconds = getSeconds(date);
-    blockForFullDate.innerHTML = `а) Сегодня ${weekDay}, ${day} ${month} ${year} года, ${hour} час ${minutes} минут ${seconds} секунды `;
-    blockDate.innerHTML = `б) Сегодня ${weekDay}, ${day} ${month} ${year} года, ${hour} час ${minutes} минут ${seconds} секунды `;
-  };
-
-  outputDate();
+  startFirstDate();
 };
 
-const mediumDate = () => {
-  let blockDate = document.getElementById("blockDate");
-
-  const getDay = (date) => {
-    return date.getDate(date);
-  };
-
-  const getMonth = (date) => {
-    return date.getMonth(date);
-  };
-
-  const getYear = (date) => {
-    return date.getFullYear(date);
-  };
-
-  const getHour = (date) => {
-    return date.getHours(date);
-  };
-
-  const getMinutes = (date) => {
-    return date.getMinutes(date);
-  };
-
-  const getSeconds = (date) => {
-    return date.getSeconds(date);
-  };
-
-  const outputDate = () => {
-    const date = new Date();
-    let day = getDay(date);
-    let month = getMonth(date);
-    let year = getYear(date);
-    let hour = getHour(date);
-    let minutes = getMinutes(date);
-    let seconds = getSeconds(date);
-    blockDate.innerHTML = `б) ${day}.${month + 1}.${year} - ${hour}:${minutes}:${seconds}`;
-  };
-
-  outputDate();
+// б) '04.02.2020 - 21:05:33'
+const getSecondDate = () => {
+  const date = new Date();
+  let secondDate = date.toLocaleString("ru-RU");
+  blockSecondDate.innerHTML = `б) ${secondDate.replace(",", " -")}`;
 };
 
 const getDate = () => {
-  fullDate();
-  mediumDate();
+  getFirstDate();
+  getSecondDate();
 };
 
 setInterval(() => getDate(), 1000);
