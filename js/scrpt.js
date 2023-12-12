@@ -11,8 +11,10 @@
 // - если строка selector начинается с точки, создаем div с классом
 // - если строка selector начинается с решетки # то создаем параграф с id
 // пример:
-// если передана строка '.block', то функция конструктор создает элемент с class="block"
-// если передана строка '#best', то функция конструктор создает элемент с id =best"
+// если передана строка '.block',
+// то функция конструктор создает элемент с class="block"
+// если передана строка '#best',
+// то функция конструктор создает элемент с id = best"
 // с помощью cssText задавать стили:
 //   - высотой - height,
 //   - шириной - width,
@@ -22,6 +24,8 @@
 // 2) Создать новый объект на основе класса DomElement
 // 3) Вызвать его метод чтобы создать элемент на странице
 
+const body = document.body;
+
 class DomElement {
   constructor(selector, height, width, bg, fontSize) {
     this.selector = selector;
@@ -29,12 +33,19 @@ class DomElement {
     this.width = width;
     this.bg = bg;
     this.fontSize = fontSize;
-    this.addDomElement = () => {
-      console.log(`Add Element to page`);
-    };
   }
+
+  create() {
+    this.element = document.createElement("input");
+    this.element.style.height = this.height;
+    this.element.style.width = this.width;
+    this.element.style.backgroundColor = this.bg;
+    this.element.style.fontSize = this.fontSize;
+    body.append(this.element);
+  }
+
+  addEventListener = () => {};
 }
 
-const newDomElment = new DomElement("block", "100px", "100px", "red");
-
-newDomElment.addDomElement();
+let input = new DomElement(null, "20px", "250px", "#fff", "12px");
+input.create();
