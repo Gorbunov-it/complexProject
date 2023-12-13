@@ -1,51 +1,35 @@
 "use strict";
 
-// 1) Создать функцию-конструктор DomElement, который
-//    содержит свойства
-//   - selector,
-//   - height,
-//   - width,
-//   - bg,
-//   - fontSize
-// содержит метод, который создает элемент на странице в зависимости от условия:
-// - если строка selector начинается с точки, создаем div с классом
-// - если строка selector начинается с решетки # то создаем параграф с id
-// пример:
-// если передана строка '.block',
-// то функция конструктор создает элемент с class="block"
-// если передана строка '#best',
-// то функция конструктор создает элемент с id = best"
-// с помощью cssText задавать стили:
-//   - высотой - height,
-//   - шириной - width,
-//   - background - bg
-//   - размер текста fontSize
-// Внутрь созданного блока записывать любой текст. Метод записи может быть любым.
-// 2) Создать новый объект на основе класса DomElement
-// 3) Вызвать его метод чтобы создать элемент на странице
-
 const body = document.body;
 
 class DomElement {
-  constructor(selector, height, width, bg, fontSize) {
+  constructor(selector, attribute, className, width, height, bg, fontSize) {
     this.selector = selector;
-    this.height = height;
+    this.attribute = attribute;
+    this.class = className;
     this.width = width;
+    this.height = height;
     this.bg = bg;
     this.fontSize = fontSize;
   }
 
   create() {
-    this.element = document.createElement("input");
-    this.element.style.height = this.height;
-    this.element.style.width = this.width;
-    this.element.style.backgroundColor = this.bg;
-    this.element.style.fontSize = this.fontSize;
+    this.element = document.createElement(this.selector);
+    this.element.setAttribute(this.attribute, this.class);
+    this.element.style.cssText = `selector: ${this.selector}; width: ${this.width}; height: ${this.height}; background: ${this.bg}; fontSize: ${this.fontSize}; position: absolute; text-align: center; color: white; line-height: 250px;`;
+    this.element.textContent = "Какой-то текст";
     body.append(this.element);
   }
-
-  addEventListener = () => {};
 }
 
-let input = new DomElement(null, "20px", "250px", "#fff", "12px");
-input.create();
+const Init = () => {
+  const str = ".block"; // Example = [.block или #block]
+  const selector = str.charAt() === "." ? "div" : "p";
+  const attribute = str.charAt() === "." ? "class" : "id";
+  const classElement = str.slice(1);
+
+  let element = new DomElement(selector, attribute, classElement, "250px", "250px", "blue", "12px");
+  element.create();
+};
+
+Init();
