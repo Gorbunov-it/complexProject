@@ -41,6 +41,7 @@ class DomElement {
           this.element.style.left = goLeft - 40 + "px";
           break;
         default:
+          alert("Для управления квадратом нажимайте стрелочками");
           break;
       }
     });
