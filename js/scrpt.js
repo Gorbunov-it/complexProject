@@ -23,25 +23,25 @@ class DomElement {
 
   addEventKeyDown = () => {
     window.addEventListener("keydown", (e) => {
-      if (e.code == "ArrowUp") {
-        let goUp = this.element.offsetTop;
-        console.log(goUp);
-        this.element.style.top = goUp - 40 + "px";
-      }
-      if (e.code == "ArrowRight") {
-        let goRight = this.element.offsetLeft;
-        console.log("goRight: ", goRight);
-        this.element.style.left = goRight + 40 + "px";
-      }
-      if (e.code == "ArrowDown") {
-        let goDown = this.element.offsetTop;
-        console.log("goDown: ", goDown);
-        this.element.style.top = goDown + 40 + "px";
-      }
-      if (e.code == "ArrowLeft") {
-        let goLeft = this.element.offsetLeft;
-        console.log("goLeft: ", goLeft);
-        this.element.style.left = goLeft - 40 + "px";
+      switch (e.code) {
+        case "ArrowUp":
+          let goUp = this.element.offsetTop;
+          this.element.style.top = goUp - 40 + "px";
+          break;
+        case "ArrowRight":
+          let goRight = this.element.offsetLeft;
+          this.element.style.left = goRight + 40 + "px";
+          break;
+        case "ArrowDown":
+          let goDown = this.element.offsetTop;
+          this.element.style.top = goDown + 40 + "px";
+          break;
+        case "ArrowLeft":
+          let goLeft = this.element.offsetLeft;
+          this.element.style.left = goLeft - 40 + "px";
+          break;
+        default:
+          break;
       }
     });
   };
