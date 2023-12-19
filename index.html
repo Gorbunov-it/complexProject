@@ -5,7 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./style.css" />
     <script src="./js/script.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <h1 style="text-align: center">Форма добавление сотрудника</h1>
+      <hr />
+      <div class="form-work">
+        <form class="row g-3">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Фамилия</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputPassword" />
+          </div>
+          <label for="inputPassword" class="col-sm-2 col-form-label">Имя</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputPassword" />
+          </div>
+          <label for="inputPassword" class="col-sm-2 col-form-label">Отчетсво</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputPassword" />
+          </div>
+          <div class="col-12">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Фамилия</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputPassword" />
+            </div>
+          </div>
+          <div class="col-12">
+            <input type="text" class="form-control" placeholder="Отчетсво" aria-label="Отчетсво" />
+          </div>
+          <div class="col-12">
+            <label for="inputAddress" class="form-label">Адрес</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="Проспект Ленина" />
+          </div>
+          <div class="col-md-6">
+            <label for="inputCity" class="form-label">Город</label>
+            <input type="text" class="form-control" id="inputCity" placeholder="Брянск" />
+          </div>
+          <div class="col-md-4">
+            <label for="inputState" class="form-label">Область</label>
+            <select id="inputState" class="form-select">
+              <option selected>Выберите...</option>
+              <option>...</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label for="inputZip" class="form-label">Индекс</label>
+            <input type="text" class="form-control" id="inputZip" />
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">Добавить</button>
+          </div>
+        </form>
+      </div>
+      <hr />
+      <h3 style="text-align: center">Таблица сотрудников</h3>
+      <hr />
+      <div class="table-works">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">№</th>
+              <th scope="col">Фамилия</th>
+              <th scope="col">Имя</th>
+              <th scope="col">Отчетсво</th>
+              <th scope="col">Действие</th>
+            </tr>
+          </thead>
+          <tbody class="table-works">
+            <tr>
+              <th scope="row">1</th>
+              <td>Иванов</td>
+              <td>Иван</td>
+              <td>Иванович</td>
+              <td>
+                <button type="button" class="btn btn-danger">Удаление</button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Иванов</td>
+              <td>Иван</td>
+              <td>Иванович</td>
+              <td>
+                <button type="button" class="btn btn-danger">Удаление</button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Иванов</td>
+              <td>Иван</td>
+              <td>Иванович</td>
+              <td>
+                <button type="button" class="btn btn-danger">Удаление</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <style>
+      .container {
+        max-width: 1140px;
+      }
+
+      .table > thead > tr,
+      .table > tbody > tr {
+        text-align: center;
+      }
+    </style>
+  </body>
 </html>
